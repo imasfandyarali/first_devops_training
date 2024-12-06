@@ -1,0 +1,45 @@
+# Task 01 
+travel_profile:
+  name: "Asfand"
+  age: 44
+  fav_destination: "Spain"
+
+  travel_history:
+   -country_name: "Turkey"
+   stay_duration: "5 days"
+   -country_name2: "Pakistan"
+   stay_duration2: "1 day"
+   -country_name3: "Australia"
+   stay_duration3: "9 days"
+travel_preferences:
+  preferred_travel_styles:
+    - adventure
+    - relaxation
+    - cultural exploration
+contact_info:
+  email: "asfand@domain.com"
+  phone_number: "33500112233"
+
+
+# Task 02
+fitness_health_profile:
+  name: "Ali"
+  age: 26
+  fitness_level: "Beginner"
+fitness_goal:
+  -goal: 
+    target: "lose weight"
+    purpose: "run 10K"
+  -goal2: 
+    target: "lose weight"
+    purpose: "run 1K"
+  
+dietary_preferences:
+  - vegan
+  - gluten free
+exercise_routine:
+  types_of_excersise:
+   - name: "Jumps"
+     frequency: "twice a day"
+   - name2: "Pushups"
+     frequency2: "thrice a day" 
