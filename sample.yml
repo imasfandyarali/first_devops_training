@@ -9,7 +9,7 @@ numbers: [1, 2, 3, 4]
 
 server: 
  port: 8080
- hostname: example
+ hostname: exampleeeee
  database: local 
  status: 
 
@@ -67,7 +67,7 @@ student1:
   hobbies: 
     - music
     - tennis
-    - pilates
+    - pilatessss
 
 student2: 
   name: Ali
@@ -77,7 +77,7 @@ datacenter: {location: US, people: 37}
 Animals: [cat, dog, goat]
 
 student1 : {
-  name: John
+  name: John2
   hobbies: 
    - cricket
 }
