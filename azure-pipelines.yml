@@ -9,20 +9,69 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-jobs: 
- - job: job1
-   steps:
-   - script: echo Hello, world 234!
-     displayName: 'Run a one-line script'
-     
- - job: job2
-   dependsOn: job1
-   steps:
-   - script: echo Hello, world 34567!
-     displayName: 'Run a two-line script'
+stages:
+  - stage: StartingPoint
+    displayName: 'Starting Point'
+    jobs:
+      - job: job1
+        steps:
+          - script: echo "Starting"
+            displayName: 'Initialize'
 
- - job: job3
-   dependsOn: job2
-   steps:
-   - script: echo Hello, world 7899!
-     displayName: 'Run a three-line script'
+  - stage: StageA
+    displayName: 'Stage A'
+    dependsOn: StartingPoint
+    jobs:
+      - job: jobA
+        steps:
+          - script: echo "Execute Stage A..."
+            displayName: 'Run Stage A'
+
+  - stage: StageB
+    displayName: 'Stage B'
+    dependsOn: StartingPoint
+    jobs:
+      - job: jobB
+        steps:
+          - script: echo "Execute Stage B..."
+            displayName: 'Run Stage B'
+
+  - stage: StageC
+    displayName: 'Stage C'
+    dependsOn: StartingPoint
+    jobs:
+      - job: jobC
+        steps:
+          - script: echo "Execute Stage C..."
+            displayName: 'Run Stage C'
+
+  - stage: ProduceArtifact
+    displayName: 'Produce Artifact'
+    dependsOn:
+      - StageA
+      - StageB
+      - StageC
+    jobs:
+      - job: jobArtifact
+        steps:
+          - script: echo "Produce artifact from previous stages..."
+            displayName: 'Create Artifact'
+
+  - stage: Deploy
+    displayName: 'Deploy Job'
+    dependsOn: ProduceArtifact
+    condition: succeeded('ProduceArtifact')
+    jobs:
+      - job: jobDeploy
+        steps:
+          - script: echo "Deploy the app..."
+            displayName: 'Deploy app'
+  - stage: rollback
+    displayName: 'roll back'
+    dependsOn: ProduceArtifact
+    condition: failed('ProduceArtifact')
+    jobs:
+      - job: rollback
+        steps:
+          - script: echo "rollback app..."
+            displayName: 'rollback app'
